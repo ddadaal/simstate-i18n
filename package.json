@@ -1,6 +1,6 @@
 {
   "name": "simstate-i18n",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Strongly-typed react i18n library based on simstate",
   "author": "ddadaal",
   "license": "MIT",
