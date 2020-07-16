@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { I18nContext, Definitions, Language } from "./i18nContext";
+import { createStore } from "simstate";
 
 const splitter = /(\{\})/;
 
@@ -28,7 +29,6 @@ function replacePlaceholders(definition: string, replacements: React.ReactNode[]
  * This function is intended to be used with [simstate](https://github.com/ddadaal/simstate) as the StoreInit of a global I18nStore instance.
  * @param i18nContext I18nContext instance
  * @param initialLanguage The initial language. If not specified, the first language in the context will be used.
- * @returns A I18nStore instance.
  */
 export function I18nStore<D extends Definitions, T extends Language<D>>(i18nContext: I18nContext<D, T>, initialLanguage?: T) {
   const [language, setLanguage] = useState(initialLanguage || i18nContext.allLanguages[0]);
@@ -72,3 +72,13 @@ export function I18nStore<D extends Definitions, T extends Language<D>>(i18nCont
 
 }
 
+/**
+ * Helper function to create a I18nStore with `simstate`'s `createStore`.
+ * Identical to call `createStore` with `I18nStore`.
+ * @param i18nContext I18nContext instance
+ * @param initialLanguage The initial language. If not specified, the first language in the context will be used.
+ * @returns a I18nStore instance.
+ */
+export function createI18nStore<D extends Definitions, T extends Language<D>>(i18nContext: I18nContext<D, T>, initialLanguage?: T) {
+  return createStore(I18nStore, i18nContext, initialLanguage);
+}

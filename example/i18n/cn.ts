@@ -7,6 +7,6 @@ export default {
       home: "主页",
       about: "关于",
     },
-    content: "感谢使用simstate-i18n。"
+    content: "现在时间：{}。感谢使用simstate-i18n。"
   }
 }

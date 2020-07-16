@@ -8,7 +8,7 @@ interface Props {
   replacements?: React.ReactNode[];
 }
 
-const LocalizedString: React.FC<Props> = ({ id, replacements }) => {
+export const LocalizedString: React.FC<Props> = ({ id, replacements }) => {
 
   const i18nStore = useStore(I18nStore);
 
@@ -17,5 +17,3 @@ const LocalizedString: React.FC<Props> = ({ id, replacements }) => {
     [i18nStore.language, id, ...replacements || []]);
 
 };
-
-export default LocalizedString;

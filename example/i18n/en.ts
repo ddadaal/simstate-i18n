@@ -7,7 +7,7 @@ export default {
       home: "Home",
       about: "About",
     },
-    content: "Thanks for using simstate-i18n"
+    content: "Current Time {}. Thanks for using simstate-i18n"
   }
 }
 
