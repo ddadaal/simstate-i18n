@@ -53,6 +53,11 @@ export interface I18nStoreDef<D extends Definitions, T extends Language<D>> {
    */
   translate: (id: string, replacements?: React.ReactNode[]) => React.ReactNode | string;
 
+  /**
+   * The original I18nContext.
+   */
+  context: I18nContext<D, T>;
+
 }
 
 
@@ -100,7 +105,7 @@ export function I18nStore<D extends Definitions, T extends Language<D>>(i18nCont
     return replacePlaceholders(def, replacements);
   }, [getDefinition]);
 
-  return { currentLanguage: language, changeLanguage, translate };
+  return { currentLanguage: language, changeLanguage, translate, context: i18nContext };
 
 }
 
