@@ -1,6 +1,7 @@
 # simstate-i18n
 
 [![NPM](https://img.shields.io/npm/v/simstate-i18n.svg)](https://www.npmjs.com/package/simstate-i18n)
+[![types](https://img.shields.io/npm/types/simstate.svg?style=flat-square)](https://www.npmjs.com/package/simstate-i18n)
 
 `simstate-i18n` is a strongly-typed React i18n library based on [simstate](https://github.com/ddadaal/simstate).
 
@@ -18,11 +19,17 @@
 npm install --save simstate-i18n
 ```
 
+# Example
+
+My blog ddadaal.me is created with simstate-i18n.
+
+Try changing the language by the LanguageSelector.
+
 # Usage
 
-This library requires **configurations** before using the components and store.
+This library requires **setting up necessary files and folders** before using the components and store.
 
-## Configurations
+## Setup
 
 Check out the [example](example) folder for recommended file structure.
 
@@ -183,16 +190,13 @@ const ControlPanel = () => {
 }
 ```
 
+# Related
+
+[`simstate`](https://github.com/ddadaal/simstate): A Strongly-typed React State Management Tool Favoring [React Hooks](https://reactjs.org/docs/hooks-intro.html) and [TypeScript](https://www.typescriptlang.org/).
+
+[Strongly Typed i18n with TypeScript](https://ddadaal.me/articles/strongly-typed-i18n-with-typescript) (English): This article of mine talks about the problems of using raw string as the text ids, and also introduces a proxy-based text id generation method which is now replaced with another method [(src/i18nContext.ts)](src/i18nContext.ts) which should have better performance.
 
 
-
-
-
-
-
-
-
-
-## License
+# License
 
 MIT © [ddadaal](https://github.com/ddadaal)
