@@ -11,14 +11,14 @@
  *
  * The id (key) of the text "Home" is navbar.home.
  */
-export type Definitions = { [key: string]: string | Definitions };
+export type Definitions = { [key: string]: string | object };
 
 /**
  * Language.
  */
 export interface Language<TDefinitions extends Definitions> {
   /**
-   * The id of the language. Language tag is recommended, but any unique string is acceptable.
+   * The id of the language. Any unique string is acceptable.
    */
   id: string;
 
@@ -31,6 +31,11 @@ export interface Language<TDefinitions extends Definitions> {
    * The Definitions object of the language.
    */
   definitions: TDefinitions;
+
+  /**
+   * The name of the language.
+   */
+  name: string;
 }
 
 /**
@@ -60,7 +65,7 @@ export interface I18nContext<D extends Definitions, T extends Language<D>> {
    *
    * idAccessor.navbar.home returns the string "navbar.home".
    */
-  idAccessor: D;
+  idAccessor: T extends Language<infer Def> ? Def : D;
 }
 
 function makeIdAccessor(obj: {}, baselineLangSection: {}, baseKey: string) {
@@ -92,7 +97,7 @@ export function createI18nContext<D extends Definitions, T extends Language<D>>(
   const getLanguage = (searchString: string) => allLanguages.find((x) => x.id === searchString || x.langStrings.includes(searchString));
 
   // Recursively construct the idAccessor
-  const idAccessor = {} as D;
+  const idAccessor = {} as T extends Language<infer Def> ? Def : D;
   makeIdAccessor(idAccessor, allLanguages[0].definitions, "");
 
   return {
