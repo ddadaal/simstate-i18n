@@ -2,6 +2,7 @@
 
 [![NPM](https://img.shields.io/npm/v/simstate-i18n.svg)](https://www.npmjs.com/package/simstate-i18n)
 [![types](https://img.shields.io/npm/types/simstate.svg?style=flat-square)](https://www.npmjs.com/package/simstate-i18n)
+[![Build Status](https://travis-ci.com/ddadaal/simstate-i18n.svg?branch=master)](https://travis-ci.com/ddadaal/simstate-i18n)
 
 `simstate-i18n` is a strongly-typed React i18n library based on [simstate](https://github.com/ddadaal/simstate).
 
@@ -21,7 +22,7 @@ npm install --save simstate-i18n
 
 # Example
 
-My blog ddadaal.me is created with simstate-i18n.
+My blog [ddadaal.me](https://ddadaal.me) is created with simstate-i18n.
 
 Try changing the language by the LanguageSelector.
 
