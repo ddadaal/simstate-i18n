@@ -88,6 +88,13 @@ import en from "./en";
 // Import the factory function
 import { createI18nContext } from "simstate-i18n";
 
+// List of all languages of the projects
+const allLanguages = [cn, en];
+
+// The actual Language type,
+// might be useful when the Language object is extended and the extra properties are needed
+type Language = typeof en;
+
 // Create the I18nContext with all the languages
 const i18nContext = createI18nContext([cn, en]);
 
@@ -95,7 +102,7 @@ const i18nContext = createI18nContext([cn, en]);
 // Recommendation: rename the idAccessor to lang for shorter typing
 const { getLanguage, idAccessor: lang } = i18nContext;
 
-export { i18nContext, getLanguage, lang };
+export { i18nContext, getLanguage, lang, allLanguages, Language };
 ```
 
 4. Create and inject a new global `simstate` store with the i18nContext instance.
