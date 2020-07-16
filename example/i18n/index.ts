@@ -1,15 +1,22 @@
 import cn from "./cn";
 import en from "./en";
-import { createI18nContext } from "../../dist";
+import { createI18nContext, I18nStoreDef, I18nStore } from "../../dist";
+import { useStore } from "simstate";
 
-const allLanguages = [cn, en];
+export const allLanguages = [cn, en];
 
-type Language = typeof en;
+export type Language = typeof en;
 
-const i18nContext = createI18nContext([cn, en]);
+export const i18nContext = createI18nContext([cn, en]);
 
 const { getLanguage, idAccessor: lang } = i18nContext;
 
-export { i18nContext, getLanguage, lang, allLanguages, Language };
+export { getLanguage, lang };
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function useI18nStore() {
+  return useStore(I18nStore) as I18nStoreDef<Language["definitions"], Language>;
+}
+
 
 

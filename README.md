@@ -81,31 +81,37 @@ export default {
 // src/i18n/index.ts
 // example: example/i18n/index.ts
 
-// Import all language objects
+// Imports
 import cn from "./cn";
 import en from "./en";
+import { createI18nContext, I18nStoreDef, I18nStore } from "simstate-i18n";
+import { useStore } from "simstate";
 
-// Import the factory function
-import { createI18nContext } from "simstate-i18n";
-
-// List of all languages of the projects
-const allLanguages = [cn, en];
+// List of all languages of the project
+export const allLanguages = [cn, en];
 
 // The actual Language type,
 // might be useful when the Language object is extended and the extra properties are needed
-type Language = typeof en;
+export type Language = typeof en;
 
 // Create the I18nContext with all the languages
-const i18nContext = createI18nContext([cn, en]);
+export const i18nContext = createI18nContext([cn, en]);
 
-// Destruct the members for easier usage
+// Destruct and export the members for easier usage
 // Recommendation: rename the idAccessor to lang for shorter typing
 const { getLanguage, idAccessor: lang } = i18nContext;
+  export { getLanguage, lang };
 
-export { i18nContext, getLanguage, lang, allLanguages, Language };
+// This function is shortcut to use I18nStore,
+// and also specify the exact types of Language objects,
+// which helps avoid type casting.
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function useI18nStore() {
+  return useStore(I18nStore) as I18nStoreDef<Language["definitions"], Language>;
+}
 ```
 
-4. Create and inject a new global `simstate` store with the i18nContext instance.
+1. Create and inject a new global `simstate` store with the i18nContext instance.
 
 ```tsx
 // example: example/App.tsx
