@@ -24,13 +24,45 @@ function replacePlaceholders(definition: string, replacements: React.ReactNode[]
   return array;
 }
 
+// It is NOT recommended to specify the type of a simstate store
+// since it can be automatically inferred when `useStore`.
+// But this is used for documentation of simstate-i18n users.
+
+/**
+ * The type of an I18nStore instance
+ */
+export interface I18nStoreDef<D extends Definitions, T extends Language<D>> {
+
+  /**
+   * Current language.
+   */
+  currentLanguage: T;
+
+  /**
+   * Change the language to the language that can be searched by the searchString (id == searchString or langStrings contains searchString).
+   * Throws if the searchString does not match any language.
+   */
+  changeLanguage: (searchString: string) => void;
+
+  /**
+   * Translate the id to the text of current language,
+   * optionally replacing the placeholders with replacement elements.
+   *
+   * Tip: If you are sure that the resulting element is just a string,
+   *      just cast the result to string. (translate(root.test) as string)
+   */
+  translate: (id: string, replacements?: React.ReactNode[]) => React.ReactNode | string;
+
+}
+
+
 /**
  * The StoreInit of I18nStore, which is used to control the language information of the whole application.
  * This function is intended to be used with [simstate](https://github.com/ddadaal/simstate) as the StoreInit of a global I18nStore instance.
  * @param i18nContext I18nContext instance
  * @param initialLanguage The initial language. If not specified, the first language in the context will be used.
  */
-export function I18nStore<D extends Definitions, T extends Language<D>>(i18nContext: I18nContext<D, T>, initialLanguage?: T) {
+export function I18nStore<D extends Definitions, T extends Language<D>>(i18nContext: I18nContext<D, T>, initialLanguage?: T): I18nStoreDef<D, T> {
   const [language, setLanguage] = useState(initialLanguage || i18nContext.allLanguages[0]);
 
   // throw if langString is not of any language
@@ -68,7 +100,7 @@ export function I18nStore<D extends Definitions, T extends Language<D>>(i18nCont
     return replacePlaceholders(def, replacements);
   }, [getDefinition]);
 
-  return { language, changeLanguage, translate };
+  return { currentLanguage: language, changeLanguage, translate };
 
 }
 

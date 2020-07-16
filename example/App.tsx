@@ -23,7 +23,7 @@ const ControlPanel = () => {
 
   return (
     <div>
-      <p>Current language: {i18nStore.language.name}</p>
+      <p>Current language: {i18nStore.currentLanguage.name}</p>
       <ul>
         {allLanguages.map((lang) => (
           <li key={lang.id}>

@@ -14,6 +14,6 @@ export const LocalizedString: React.FC<Props> = ({ id, replacements }) => {
 
   return useMemo(
     () => i18nStore.translate(id, replacements) as unknown as React.ReactElement,
-    [i18nStore.language, id, ...replacements || []]);
+    [i18nStore.currentLanguage, id, ...replacements || []]);
 
 };
