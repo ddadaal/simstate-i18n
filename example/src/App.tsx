@@ -1,10 +1,15 @@
 import React from 'react'
-
-import { ExampleComponent } from 'simstate-i18n'
-import 'simstate-i18n/dist/index.css'
+import LocalizedString from "../../dist/LocalizedString"
+import { lang } from "./i18n"
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return (
+    <div>
+      <div>
+        <LocalizedString id={lang.navbar.home} />
+      </div>
+    </div>
+  )
 }
 
 export default App
