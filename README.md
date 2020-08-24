@@ -11,6 +11,7 @@
 - Use text id in a **strongly-typed manner**
 - Support nested text id
 - Support placeholders on text definition
+- Support async language loading for code splitting
 - Hot change languages without page reloading
 - Hot change texts without restarting the application
 
@@ -57,9 +58,6 @@ export default {
   // The id of the language. Any unique string is acceptable.
   id: "en",
 
-  // Strings that can be used to uniquely present the language. Used in getLanguage function.
-  langStrings: ["en", "en_US"],
-
   // The name of the language
   name: "English",
 
@@ -83,24 +81,22 @@ export default {
 
 // Imports
 import cn from "./cn";
-import en from "./en";
 import { createI18nContext, I18nStoreDef, I18nStore } from "simstate-i18n";
 import { useStore } from "simstate";
 
-// List of all languages of the project
-export const allLanguages = [cn, en];
+// Load English dynamically to support code splitting
+const en = () => import("./en").then((x) => x.default);
 
 // The actual Language type,
 // might be useful when the Language object is extended and the extra properties are needed
-export type Language = typeof en;
+export type Language = typeof cn;
 
-// Create the I18nContext with all the languages
-export const i18nContext = createI18nContext([cn, en]);
+// Create the I18nContext with cn as the default language.
+export const i18nContext = createI18nContext(cn, { en });
 
 // Destruct and export the members for easier usage
 // Recommendation: rename the idAccessor to lang for shorter typing
-const { getLanguage, idAccessor: lang } = i18nContext;
-  export { getLanguage, lang };
+export const { getLanguage, idAccessor: lang } = i18nContext;
 
 // This function is shortcut to use I18nStore,
 // and also specify the exact types of Language objects,
@@ -189,7 +185,12 @@ const ControlPanel = () => {
 
   return (
     <div>
-      <p>Current language: {i18nStore.currentLanguage.name}</p>
+      <p>
+        Current language: {i18nStore.currentLanguage.name}
+      </p>
+      {
+        i18nStore.switchingToId && `Switching to ${i18nStore.switchingToId}`
+      }
       <ul>
         {allLanguages.map((lang) => (
           <li key={lang.id}>
