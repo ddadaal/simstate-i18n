@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/ddadaal/simstate-i18n/compare/v2.0.0...v2.0.1) (2020-08-25)
+
+
+### Bug Fixes
+
+* not updating LocalizedString ([0b7f82a](https://github.com/ddadaal/simstate-i18n/commit/0b7f82a1722883840ab9a669a2a0034558d661c7))
+
 ## [2.0.0](https://github.com/ddadaal/simstate-i18n/compare/v1.1.0...v2.0.0) (2020-08-24)
 
 
