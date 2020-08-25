@@ -1,5 +1,4 @@
 import { Language, AsyncLanguage, Definitions } from "./types";
-import { useCallback } from "react";
 
 const splitter = /(\{\})/;
 
@@ -40,15 +39,6 @@ export const getDefinition = (language: Language<{}>, id: string): string => {
   return content;
 };
 
-
-export const translate = (language: Language<{}>) =>
-  useCallback((id: string, replacements?: React.ReactNode[]): React.ReactNode | string => {
-    const def = getDefinition(language, id);
-    if (!replacements || replacements.length === 0) {
-      return def;
-    }
-    return replacePlaceholders(def, replacements);
-  }, [getDefinition]);
 
 
 export const loadLanguage =

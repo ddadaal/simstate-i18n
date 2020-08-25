@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { createStore } from "simstate";
 import { Definitions, Language, I18nContext } from "./types";
-import { translate, loadLanguage } from "./utils";
+import { loadLanguage, getDefinition, replacePlaceholders } from "./utils";
 
 // It is NOT recommended to specify the type of a simstate store
 // since it can be automatically inferred when `useStore`.
@@ -77,11 +77,19 @@ export function I18nStore<D extends Definitions, T extends Language<D>>(
     }
   }, []);
 
+  const translate = useCallback((id: string, replacements?: React.ReactNode[]): React.ReactNode | string => {
+    const def = getDefinition(language, id);
+    if (!replacements || replacements.length === 0) {
+      return def;
+    }
+    return replacePlaceholders(def, replacements);
+  }, [language]);
+
   return {
     currentLanguage: language,
     changeLanguage,
     switchingToId,
-    translate: translate(language),
+    translate,
     context,
   };
 
