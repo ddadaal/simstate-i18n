@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/ddadaal/simstate-i18n/compare/v2.0.1...v2.1.0) (2020-09-24)
+
+
+### Features
+
+* set other language to initialize i18nStore ([3323177](https://github.com/ddadaal/simstate-i18n/commit/33231772ef462bb869a804b8ab37e9b39b851b03))
+
 ### [2.0.1](https://github.com/ddadaal/simstate-i18n/compare/v2.0.0...v2.0.1) (2020-08-25)
 
 
