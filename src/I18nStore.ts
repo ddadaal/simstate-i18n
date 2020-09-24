@@ -50,12 +50,14 @@ export interface I18nStoreDef<D extends Definitions, T extends Language<D>> {
  * The StoreInit of I18nStore, which is used to control the language information of the whole application.
  * This function is intended to be used with [simstate](https://github.com/ddadaal/simstate) as the StoreInit of a global I18nStore instance.
  * @param context I18nContext instance
+ * @param firstLanguage the initial language to be loaded. If not set, the default language for the context will be used.
  */
 export function I18nStore<D extends Definitions, T extends Language<D>>(
   context: I18nContext<D, T>,
+  firstLanguage: T = context.defaultLanguage,
 ): I18nStoreDef<D, T> {
 
-  const [language, setLanguage] = useState(context.defaultLanguage);
+  const [language, setLanguage] = useState(firstLanguage);
   const [switchingToId, setSwitchingToId] = useState<string | undefined>();
 
   // throw if id is not of any language
@@ -99,10 +101,12 @@ export function I18nStore<D extends Definitions, T extends Language<D>>(
  * Helper function to create a I18nStore with `simstate`'s `createStore`.
  * Identical to call `createStore` with `I18nStore`.
  * @param context I18nContext instance
+ * @param firstLanguage the initial language to be loaded. If not set, the default language for the context will be used.
  * @returns a I18nStore instance.
  */
 export function createI18nStore<D extends Definitions, T extends Language<D>>(
   context: I18nContext<D, T>,
+  firstLanguage: T = context.defaultLanguage,
 ) {
-  return createStore(I18nStore, context);
+  return createStore(I18nStore, context, firstLanguage);
 }
