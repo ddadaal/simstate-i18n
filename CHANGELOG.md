@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/ddadaal/simstate-i18n/compare/v2.1.0...v2.2.0) (2021-02-05)
+
+
+### Features
+
+* add Localized component ([8ee4015](https://github.com/ddadaal/simstate-i18n/commit/8ee4015f2aaf118aad2624e26bfa7cefa284f89e))
+
 ## [2.1.0](https://github.com/ddadaal/simstate-i18n/compare/v2.0.1...v2.1.0) (2020-09-24)
 
 
