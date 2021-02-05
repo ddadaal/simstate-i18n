@@ -131,9 +131,9 @@ const Root = () => {
 
 When the configurations are completed and the global I18nStore is injected, it is possible to use the provided components and store.
 
-### LocalizedString component
+### Localized/LocalizedString component
 
-`<LocalizedString />` component is used in place of raw texts to provide i18n capabilities to anywhere a React component can be. It shows the text of the specified id of the current language.
+`<LocalizedString />` or `<Localized />` component are used in place of raw texts to provide i18n capabilities to anywhere a React component can be. It shows the text of the specified id of the current language.
 
 All LocalizedString components will be updated when the current language is changed.
 
@@ -150,6 +150,9 @@ import { LocalizedString } from "simstate-i18n";
 // set the replacements prop with the replacement elements
 // that will be inserted into the placeholders in order.
 <LocalizedString id={lang.content} replacements={[Date.now()]} />
+
+// The same as above but name is shorter
+<Localized id={lang.content} replacements={[Date.now()]} />
 ```
 
 ### useLocalized hook
