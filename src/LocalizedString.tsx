@@ -17,3 +17,5 @@ export const LocalizedString: React.FC<Props> = ({ id, replacements }) => {
     [i18nStore.currentLanguage, id, ...replacements || []]);
 
 };
+
+export const Localized = LocalizedString;
