@@ -6,6 +6,16 @@
 
 `simstate-i18n` is a strongly-typed React i18n library based on [simstate](https://github.com/ddadaal/simstate).
 
+# DEPRECATED!
+
+This library has been superceded by [`react-typed-i18n`](https://github.com/ddadaal/react-typed-i18n). The new library:
+
+- has all features of this library!
+- does not depend on `simstate`
+- use `string` literals as id which are typechecked using `template literal types`
+
+Please give it a try!
+
 # Features
 
 - Use text id in a **strongly-typed manner**
